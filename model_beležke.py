@@ -3,5 +3,9 @@ slovar_bonusov = {'kralji': 10, 'trula': 10, 'pagat ultimo': 25,'kralj ultimo': 
 
 class Miza:
 
-    def tralalal(self):
-        pass
+    def __init__(self, ime_mize, igralec_1, igralec_2, igralec_3, igralec_4):
+        self.ime =ime_mize 
+        self.igralec_1 = igralec_1
+        self.igralec_2 = igralec_2
+        self.igralec_3 = igralec_3
+        self.igralec_4 = igralec_4
