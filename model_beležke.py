@@ -22,21 +22,41 @@ class Igralec:
 
 class Miza:
 
-    def __init__(self, ime_1, ime_2, ime_3, ime_4): 
+
+    def __init__(self, ime_mize, ime_1, ime_2, ime_3, ime_4): 
+        self.ime = ime_mize
         self.igralec_1 = Igralec(ime_1)
         self.igralec_2 = Igralec(ime_2)
         self.igralec_3 = Igralec(ime_3)
         self.igralec_4 = Igralec(ime_4)
-
-
-    def dodaj_mizo(self, ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
-        seznam_miz[ime_mize] = Miza(ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
-
-    def preveri_ali_obstaja_miza(ime_mize):
-        n = range(len(seznam_miz))
-        for i in n:
-            if str(seznam_miz[i]) == str(ime_mize):
-                pass
-        return 'Ime mize je prosto. '
-
         
+        
+
+    #def dodaj_mizo(self, ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
+    #    seznam_vseh_miz[ime_mize] = Miza(ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
+
+    def preveriAliObstajaMiza(self, ime_mize):
+        if ime_mize in mize:
+            return True
+        else:
+            return False
+
+    def preveri_ali_obstaja_igralec(self, ime_mize, ime_igralca):
+        miza = seznam_miz[ime_mize]
+
+def dodajMizo(ime_mize, ime_1, ime_2, ime_3, ime_4):
+        mize[ime_mize] = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4)
+
+
+
+mize = {}
+
+nova = dodajMizo('nova', 'anže', 'jurij', 'matic', 'gal')
+
+druga = dodajMizo('druga', 'tilen', 'klemen', 'jani', 'bojan')
+
+tretja = Miza('tretja_miza', 'gašper', 'tim', 'nik', 'leon')
+
+preveri_za_četrto = preveriAliObstajaMiza()
+
+print('vse je šlo v redu')
