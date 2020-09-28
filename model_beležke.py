@@ -19,6 +19,8 @@ class Igralec:
     def mondfang(self):
         self.tocke -= 21
 
+    def uporabiRadelc(self):
+        self.radelci -= 1
 
 class Miza:
 
@@ -30,16 +32,24 @@ class Miza:
         self.igralec_3 = Igralec(ime_3)
         self.igralec_4 = Igralec(ime_4)
         
-        
+    def vrniSteviloRadelcev(self, ime_igralca, ime_mize):
+        return mize[ime_mize].poisciIgralca(ime_igralca).radelci
+
+    def vrniSteviloTock(self, ime_igralca, ime_mize):
+        return mize[ime_mize].poisciIgralca(ime_igralca).tocke
+
+    
+
+    def poisciIgralca(self, ime):
+        for igralec in [self.igralec_1, self.igralec_2, self.igralec_3, self.igralec_4]:
+            if igralec.ime == ime:
+                return igralec
+        return None
 
     #def dodaj_mizo(self, ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
     #    seznam_vseh_miz[ime_mize] = Miza(ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
 
-    def preveriAliObstajaMiza(self, ime_mize):
-        if ime_mize in mize:
-            return True
-        else:
-            return False
+    
 
     def preveri_ali_obstaja_igralec(self, ime_mize, ime_igralca):
         miza = seznam_miz[ime_mize]
@@ -48,6 +58,14 @@ def dodajMizo(ime_mize, ime_1, ime_2, ime_3, ime_4):
         mize[ime_mize] = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4)
 
 
+def točkeOdIgre(igra, razlika):
+    return slovar_iger[igra] + razlika
+
+def preveriAliObstajaMiza(ime_mize):
+        if ime_mize in mize:
+            return True
+        else:
+            return False
 
 mize = {}
 
@@ -57,6 +75,6 @@ druga = dodajMizo('druga', 'tilen', 'klemen', 'jani', 'bojan')
 
 tretja = Miza('tretja_miza', 'gašper', 'tim', 'nik', 'leon')
 
-preveri_za_četrto = preveriAliObstajaMiza()
+preveri_za_četrto = preveriAliObstajaMiza('četrta')
 
 print('vse je šlo v redu')
