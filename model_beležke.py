@@ -19,9 +19,17 @@ class Igralec:
     def mondfang(self):
         self.tocke -= 21
 
-    def uporabiRadelc(self):
-        self.radelci -= 1
+    def preveriRadelc(self):
+        if self.radelci == 0:
+            return True
+        else: 
+            return False
 
+    def porabiRadelc(self):
+        if preveriRadelc() is False:
+            self.radelci -= 1
+        else:
+            pass
 class Miza:
 
 
@@ -32,12 +40,6 @@ class Miza:
         self.igralec_3 = Igralec(ime_3)
         self.igralec_4 = Igralec(ime_4)
         
-    def vrniSteviloRadelcev(self, ime_igralca, ime_mize):
-        return mize[ime_mize].poisciIgralca(ime_igralca).radelci
-
-    def vrniSteviloTock(self, ime_igralca, ime_mize):
-        return mize[ime_mize].poisciIgralca(ime_igralca).tocke
-
     
 
     def poisciIgralca(self, ime):
@@ -50,9 +52,14 @@ class Miza:
     #    seznam_vseh_miz[ime_mize] = Miza(ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
 
     
+def vrniSteviloRadelcev(ime_mize, ime_igralca):
+    return mize[ime_mize].poisciIgralca(ime_igralca).radelci
 
-    def preveri_ali_obstaja_igralec(self, ime_mize, ime_igralca):
-        miza = seznam_miz[ime_mize]
+def vrniSteviloTock(ime_mize, ime_igralca):
+    return mize[ime_mize].poisciIgralca(ime_igralca).tocke
+
+
+
 
 def dodajMizo(ime_mize, ime_1, ime_2, ime_3, ime_4):
         mize[ime_mize] = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4)
@@ -61,11 +68,31 @@ def dodajMizo(ime_mize, ime_1, ime_2, ime_3, ime_4):
 def točkeOdIgre(igra, razlika):
     return slovar_iger[igra] + razlika
 
+def bonusTočke(bonus):
+    return slovar_bonusov[bonus]
+
+
+
 def preveriAliObstajaMiza(ime_mize):
         if ime_mize in mize:
             return True
         else:
             return False
+
+def preveri_ali_obstaja_igralec(ime_mize, ime_igralca):
+        miza = mize[ime_mize]
+        slovar_igralcev = miza.__dir__()
+
+def slovar_igralcev(ime_mize):
+    if ime_mize in mize:
+        miza = mize[ime_mize]
+        ime_1 = miza.igralec_1.ime
+        ime_2 = miza.igralec_2.ime
+        ime_3 = miza.igralec_3.ime
+        ime_4 = miza.igralec_4.ime
+        print (f'Za mizo {ime_mize} sedijo {ime_1}, {ime_2}, {ime_3} in {ime_4}. ' )
+    else:
+        print('Ta miza še ne obstaja.')
 
 mize = {}
 
@@ -77,4 +104,10 @@ tretja = Miza('tretja_miza', 'gašper', 'tim', 'nik', 'leon')
 
 preveri_za_četrto = preveriAliObstajaMiza('četrta')
 
+preveriAliObstajaMiza('druga')
+
+igralci_za_drugo_mizo = slovar_igralcev('nova')
+#preveri_ali_obstaja_igralec('druga', 'jani')
+
+t = vrniSteviloRadelcev('druga', 'bojan')
 print('vse je šlo v redu')
