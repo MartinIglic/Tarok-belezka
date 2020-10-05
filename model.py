@@ -111,7 +111,7 @@ def seznamIgralcev(ime_mize):
 
 def preglejImenaIgralcev(ime_1, ime_2, ime_3, ime_4):
     seznam_igralcev = [ime_1, ime_2, ime_3, ime_4]
-    množica_imen = set(seznam_igrlcev)
+    množica_imen = set(seznam_igralcev)
     if len(množica_imen) < 4:
         return False
     else: 
