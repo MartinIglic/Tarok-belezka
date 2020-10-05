@@ -51,34 +51,38 @@ class Miza:
     #def dodaj_mizo(self, ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
     #    seznam_vseh_miz[ime_mize] = Miza(ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
 
-    
+@classmethod
+
 def vrniSteviloRadelcev(ime_mize, ime_igralca):
     return mize[ime_mize].poisciIgralca(ime_igralca).radelci
 
+@classmethod
 def vrniSteviloTock(ime_mize, ime_igralca):
     return mize[ime_mize].poisciIgralca(ime_igralca).tocke
 
 
 
-
+@classmethod
 def dodajMizo(ime_mize, ime_1, ime_2, ime_3, ime_4):
         mize[ime_mize] = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4)
 
-
+@classmethod
 def točkeOdIgre(igra, razlika):
     return slovar_iger[igra] + razlika
 
+@classmethod
 def bonusTočke(bonus):
     return slovar_bonusov[bonus]
 
 
-
+@classmethod
 def preveriAliObstajaMiza(ime_mize):
         if ime_mize in mize:
             return True
         else:
             return False
 
+@classmethod
 def preveri_ali_obstaja_igralec(ime_mize, ime_igralca):
         if preveriAliObstajaMiza(ime_mize) == True:
             miza = mize[ime_mize]
@@ -92,7 +96,7 @@ def preveri_ali_obstaja_igralec(ime_mize, ime_igralca):
         else:
             print(f'Miza z imenom {ime_mize} še ne obstaja.')
 
-
+@classmethod
 def seznamIgralcev(ime_mize):
     if preveriAliObstajaMiza(ime_mize) == True:
         miza = mize[ime_mize]
@@ -104,6 +108,8 @@ def seznamIgralcev(ime_mize):
     else:
         print(f'Miza z imenom {miza.ime_mize} še ne obstaja.' )
 
+        
+@classmethod
 def izpisiSeznamIgralcev(ime_mize, seznam_igralcev):
     print (f'Za mizo {ime_mize} sedijo {ime_1}, {ime_2}, {ime_3} in {ime_4}. ' )
 
