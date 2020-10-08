@@ -1,5 +1,7 @@
 slovar_iger = {'tri': 10, 'dve': 20, 'ena': 30, 'solo tri': 40, 'solo dve': 50, 'solo ena': 60, 'pikolo berač': 60, 'berač': 70, 'solo brez': 80, 'klop': 0, 'bar.valat_tri': 100, 'bar.valat_dve': 110, 'bar.valat_ena': 120, 'bar.valat_solo-tri': 125, 'bar.valat_solo-dve': 150, 'bar.valat_solo-ena': 175, 'bar.valat_solo-brez': 250, 'valat_tri':200, 'valat_dve':220, 'valat_ena':240, 'valat_solo-tri':250, 'valat_solo-dve':300, 'valat_solo-ena':350, 'valat_solo_brez':500}
 slovar_bonusov = {'kralji': 10, 'trula': 10, 'pagat ultimo': 25,'kralj ultimo': 10, 'valat': 50}
+import json
+
 
 
 class Igralec:
@@ -48,6 +50,11 @@ class Miza:
                 return igralec
         return None
 
+
+def shraniMizo(ime_datoteke,): 
+    with open(ime_datoteke, 'w') as datoteka:
+        json.dump(mize, datoteka)
+
     #def dodaj_mizo(self, ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
     #    seznam_vseh_miz[ime_mize] = Miza(ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
 
@@ -64,8 +71,8 @@ def vrniSteviloTock(ime_mize, ime_igralca):
 
 
 def dodajMizo(ime_mize, ime_1, ime_2, ime_3, ime_4):
-        mize[ime_mize] = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4)
-
+        if preveriAliObstajaMiza(ime_mize) == False:
+            mize[ime_mize] = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4)
 
 def točkeOdIgre(igra, razlika):
     return slovar_iger[igra] + razlika
@@ -124,11 +131,16 @@ def izpisiSeznamIgralcev(ime_mize, seznam_igralcev):
 
 mize = {}
 
-#nova = dodajMizo('nova', 'anže', 'jurij', 'matic', 'gal')
 
-#druga = dodajMizo('druga', 'tilen', 'klemen', 'jani', 'bojan')
+
+nova = dodajMizo('nova', 'anže', 'jurij', 'matic', 'gal')
+
+druga = dodajMizo('druga', 'tilen', 'klemen', 'jani', 'bojan')
+
+shranitev = shraniMizo(json)
+
 #
-#tretja = Miza('tretja_miza', 'gašper', 'tim', 'nik', 'leon')
+tretja = Miza('tretja_miza', 'gašper', 'tim', 'nik', 'leon')
 #
 #preveri_za_četrto = preveriAliObstajaMiza('četrta')
 #

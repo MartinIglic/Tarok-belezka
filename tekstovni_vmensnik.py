@@ -20,18 +20,36 @@ def dodaj_novo_mizo():
         if preglejImenaIgralcev(ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4) == True:
             print(f'Imena so sprejemljiva. Vaša miza{ime_mize} ima igralce {ime_igralca_1}, {ime_igralca_2}, {ime_igralca_3}, {ime_igralca_4}.')
             dodajMizo(ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
+            Miza(ime_mize,ime_igralca_1,ime_igralca_2,ime_igralca_3,ime_igralca_4)
             print('Uspešno ste dodali novo mizo')
         else:
             print('Imena se ponavljajo. Prosim izberite druga imena.')
 
 def posodobi_podatke():
     print('Kako se imenuje vaša miza?')
-    input('> ')
+    ime_mize = input('> ')
+    if preveriAliObstajaMiza(ime_mize) == True:
+        print('Za mizo')
     
     pass
 
+def vnosIgralcev():
+    ime_igralca_1 = input('> Prvemu igralcu bo ime...')
+    ime_igralca_2 = input('> Drugemu igralcu bo ime...')
+    ime_igralca_3 = input('> Tretjemu igralcu bo ime...')
+    ime_igralca_4 = input('> Četrtemu igralcu bo ime...')
+
+def izbiranjeMize():
+    print('Kako želite poimenovati svojo mizo?')
+    ime_mize = input('> ')
+
 def poglej_dosedanje_rezultate():
-    pass
+    print('Kako se imenuje vaša miza')
+    ime_mize = input('> ')
+    if preveriAliObstajaMiza(ime_mize) == True:
+        miza = mize[ime_mize]
+        
+def klicanjeMize
 
 def izhod():
     pass
