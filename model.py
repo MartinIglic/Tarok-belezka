@@ -51,12 +51,25 @@ class Miza:
         return None
 
 
-def shraniMizo(ime_datoteke,): 
-    with open(ime_datoteke, 'w') as datoteka:
-        json.dump(mize, datoteka)
 
-    #def dodaj_mizo(self, ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
-    #    seznam_vseh_miz[ime_mize] = Miza(ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
+class Belezka:
+
+    def __init__(self, ime_mize, ime_1, ime_2, ime_3, ime_4):
+        self.miza = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4)
+        self.ime = ime_mize
+
+    def zapisiBelezko(self, ime_datoteke):
+        slovar_mize = {
+            'Ime mize': self.ime,
+            'Podatki o igralcih': self.miza
+        }
+        with open(ime_datoteke, 'w') as datoteka:
+            json.dump(slovar_mize, datoteka, ensure_ascii=False, indent=4)
+
+
+
+    def dodaj_mizo(self, ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
+        seznam_vseh_miz[ime_mize] = Miza(ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
 
 
 
@@ -133,18 +146,19 @@ mize = {}
 
 
 
-nova = dodajMizo('nova', 'anže', 'jurij', 'matic', 'gal')
+nova = Belezka('nova', 'anže', 'jurij', 'matic', 'gal')
 
-druga = dodajMizo('druga', 'tilen', 'klemen', 'jani', 'bojan')
+druga = Belezka('druga', 'tilen', 'klemen', 'jani', 'bojan')
 
-shranitev = shraniMizo(json)
+nova.zapisiBelezko('skladisce.txt')
 
+druga.zapisiBelezko('skladisce.txt')
 #
 tretja = Miza('tretja_miza', 'gašper', 'tim', 'nik', 'leon')
 #
 #preveri_za_četrto = preveriAliObstajaMiza('četrta')
 #
-#
+
 #
 #preveriAliObstajaMiza('druga')
 #
