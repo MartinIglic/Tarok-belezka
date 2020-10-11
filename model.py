@@ -32,6 +32,14 @@ class Igralec:
             self.radelci -= 1
         else:
             pass
+
+    def podatkiOIgralcu(self):
+        slovar_podatkov = {}
+        slovar_podatkov['ime igralca'] = self.ime
+        slovar_podatkov['točke igralca'] = self.tocke
+        slovar_podatkov['radelci igralca'] = self.radelci
+        return slovar_podatkov
+
 class Miza:
 
 
@@ -52,6 +60,17 @@ class Miza:
 
 
 
+    def podatkiOMizi(self):
+        slovar = {}
+        slovar['ime mize'] = self.ime
+        slovar['igralec 1'] = self.igralec_1.podatkiOIgralcu()
+        slovar['igralec 2'] = self.igralec_2.podatkiOIgralcu()
+        slovar['igralec 3'] = self.igralec_3.podatkiOIgralcu()
+        slovar['igralec 4'] = self.igralec_4.podatkiOIgralcu()
+        return slovar
+
+  
+
 class Belezka:
 
     def __init__(self, ime_mize, ime_1, ime_2, ime_3, ime_4):
@@ -59,16 +78,16 @@ class Belezka:
         self.ime = ime_mize
 
     def zapisiBelezko(self, ime_datoteke):
-        slovar_mize = {
-            'Ime mize': self.ime,
-            'Podatki o igralcih': self.miza
-        }
+        slovar_mize = {}
+        slovar_mize['ime mize'] = self.ime
+        slovar_mize['Slovar podatkov'] = self.miza.podatkiOMizi
+        
         with open(ime_datoteke, 'w') as datoteka:
             json.dump(slovar_mize, datoteka, ensure_ascii=False, indent=4)
 
 
 
-    def dodaj_mizo(self, ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
+def dodaj_mizo(self, ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
         seznam_vseh_miz[ime_mize] = Miza(ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
 
 
@@ -84,8 +103,10 @@ def vrniSteviloTock(ime_mize, ime_igralca):
 
 
 def dodajMizo(ime_mize, ime_1, ime_2, ime_3, ime_4):
-        if preveriAliObstajaMiza(ime_mize) == False:
-            mize[ime_mize] = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4)
+    if preveriAliObstajaMiza(ime_mize) == False:
+        mize[ime_mize] = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4).podatkiOMizi()
+    else: 
+        print('Miza že obstaja.')
 
 def točkeOdIgre(igra, razlika):
     return slovar_iger[igra] + razlika
@@ -96,11 +117,12 @@ def bonusTočke(bonus):
 
 
 def preveriAliObstajaMiza(ime_mize):
-        if ime_mize in mize:
+        seznam = mize.keys()
+        if ime_mize in seznam:
             return True
         else:
             return False
-
+        
 
 def preveri_ali_obstaja_igralec(ime_mize, ime_igralca):
         if preveriAliObstajaMiza(ime_mize) == True:
@@ -150,13 +172,17 @@ nova = Belezka('nova', 'anže', 'jurij', 'matic', 'gal')
 
 druga = Belezka('druga', 'tilen', 'klemen', 'jani', 'bojan')
 
-nova.zapisiBelezko('skladisce.txt')
+druga.zapisiBelezko('belezka.json')
 
-druga.zapisiBelezko('skladisce.txt')
-#
-tretja = Miza('tretja_miza', 'gašper', 'tim', 'nik', 'leon')
-#
-#preveri_za_četrto = preveriAliObstajaMiza('četrta')
+nova.zapisiBelezko('belezka.json')
+
+slovar = nova.miza.podatkiOMizi()
+
+print(slovar)
+
+#Belezka('tretja', 'tine', 'matej', 'boštjan', 'andraž').zapisiBelezko('beležka.json')
+
+preveri_za_četrto = preveriAliObstajaMiza('četrta')
 #
 
 #
@@ -169,4 +195,4 @@ tretja = Miza('tretja_miza', 'gašper', 'tim', 'nik', 'leon')
 #haha = preveri_ali_obstaja_igralec('druga', 'štruci')
 #
 #t = vrniSteviloRadelcev('druga', 'bojan')
-#print('vse je šlo v redu')
+print('vse je šlo v redu')
