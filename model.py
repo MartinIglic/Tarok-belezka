@@ -80,7 +80,7 @@ class Belezka:
     def zapisiBelezko(self, ime_datoteke):
         slovar_mize = {}
         slovar_mize['ime mize'] = self.ime
-        slovar_mize['Slovar podatkov'] = self.miza.podatkiOMizi
+        slovar_mize['Slovar podatkov'] = self.miza.podatkiOMizi()
         
         with open(ime_datoteke, 'w') as datoteka:
             json.dump(slovar_mize, datoteka, ensure_ascii=False, indent=4)
