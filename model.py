@@ -40,8 +40,10 @@ class Igralec:
         slovar_podatkov['radelci igralca'] = self.radelci
         return slovar_podatkov
 
+    def posodobiIgralca(self, slovar):
+        self.tocke = slovar['točke igralca']
+        self.radelci = slovar['radelci igralca']
 class Miza:
-
 
     def __init__(self, ime_mize, ime_1, ime_2, ime_3, ime_4): 
         self.ime = ime_mize
@@ -49,15 +51,13 @@ class Miza:
         self.igralec_2 = Igralec(ime_2)
         self.igralec_3 = Igralec(ime_3)
         self.igralec_4 = Igralec(ime_4)
-        
-    
+         
 
     def poisciIgralca(self, ime):
         for igralec in [self.igralec_1, self.igralec_2, self.igralec_3, self.igralec_4]:
             if igralec.ime == ime:
                 return igralec
         return None
-
 
 
     def podatkiOMizi(self):
@@ -69,7 +69,14 @@ class Miza:
         slovar['igralec 4'] = self.igralec_4.podatkiOIgralcu()
         return slovar
 
-  
+
+    def posodobiTočkeRadelce(self, igralec_1, igralec_2, igralec_3, igralec_4):
+        self.igralec_1.posodobiIgralca(igralec_1)
+        self.igralec_2.posodobiIgralca(igralec_2)
+        self.igralec_3.posodobiIgralca(igralec_3)
+        self.igralec_4.posodobiIgralca(igralec_4)
+        
+    
 
 class Belezka:
 
@@ -79,54 +86,60 @@ class Belezka:
 
     def zapisiBelezko(self, ime_datoteke):
         slovar_mize = {}
-        slovar_mize['ime mize'] = self.ime
-        slovar_mize['Slovar podatkov'] = self.miza.podatkiOMizi()
+        slovar_mize = self.miza.podatkiOMizi()
+        print(slovar_mize)
         
         with open(ime_datoteke, 'w') as datoteka:
             json.dump(slovar_mize, datoteka, ensure_ascii=False, indent=4)
 
+#    @classmethod
+#    def nalozi_stanje(cls, ime_datoteke):
+#        with open(ime_datoteke) as datoteka:
+#            slovar_stanja = json.load(datoteka)
+#        posodobljena_miza = ustvariMizo(slovar_stanja)
+#        return Belezka()
+            
 
-
-def dodaj_mizo(self, ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
-        seznam_vseh_miz[ime_mize] = Miza(ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
-
+def slovarIgralca(slovar):
+    ime_igralca = slovar['ime igralca']
+    tocke_igralca = slovar['točke igralca']
+    radelci_igralca = slovar['radelci igralca']
+    return Igralec(ime_igralca, tocke_igralca, radelci_igralca)
 
 
 def vrniSteviloRadelcev(ime_mize, ime_igralca):
-    return mize[ime_mize].poisciIgralca(ime_igralca).radelci
-
+    miza = objekti_Miza[poisciMizo(ime_mize)]
+    igralec = miza.poisciIgralca(ime_igralca)
+    return igralec.radelci
 
 def vrniSteviloTock(ime_mize, ime_igralca):
-    return mize[ime_mize].poisciIgralca(ime_igralca).tocke
+    miza = objekti_Miza[poisciMizo(ime_mize)]
+    igralec = miza.poisciIgralca(ime_igralca)
+    return igralec.tocke
 
-
-
-
-def dodajMizo(ime_mize, ime_1, ime_2, ime_3, ime_4):
-    if preveriAliObstajaMiza(ime_mize) == False:
-        mize[ime_mize] = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4).podatkiOMizi()
-    else: 
-        print('Miza že obstaja.')
 
 def točkeOdIgre(igra, razlika):
     return slovar_iger[igra] + razlika
 
-
 def bonusTočke(bonus):
     return slovar_bonusov[bonus]
 
+def seznamImenMiz():
+    mnozica = set()
+    seznam = objekti_Miza
+    for miza in seznam:
+        mnozica.add(miza.ime_mize)
+    return mnozica
+    
 
 def preveriAliObstajaMiza(ime_mize):
-        seznam = mize.keys()
-        if ime_mize in seznam:
-            return True
-        else:
-            return False
+        mnozica = seznamImenMiz()
+        return ime_mize in mnozica
+    
         
-
 def preveri_ali_obstaja_igralec(ime_mize, ime_igralca):
         if preveriAliObstajaMiza(ime_mize) == True:
-            miza = mize[ime_mize]
+            miza = poisciMizo(ime_mize)
             seznam_igralcev = seznamIgralcev(ime_mize)
             while len(seznam_igralcev) > 0:
                 if seznam_igralcev[0] == ime_igralca:
@@ -137,19 +150,28 @@ def preveri_ali_obstaja_igralec(ime_mize, ime_igralca):
         else:
             print(f'Miza z imenom {ime_mize} še ne obstaja.')
 
+def poisciMizo(ime_mize):
+    if not ime_mize in seznamImenMiz:
+        print('miza s tem imenon ne obstaja!!!')
+    else:
+        i = 0
+        for miza in objekti_Miza:
+            if miza[i].ime_mize == ime_mize:
+                return i
+            else:
+                i += 1
+        
 
 def seznamIgralcev(ime_mize):
     if preveriAliObstajaMiza(ime_mize) == True:
-        miza = mize[ime_mize]
+        miza = objekti_Miza[ime_mize]
         ime_1 = miza.igralec_1.ime
         ime_2 = miza.igralec_2.ime
         ime_3 = miza.igralec_3.ime
         ime_4 = miza.igralec_4.ime
-        return [ime_1, ime_2, ime_3,ime_4 ]
+        return [ime_1, ime_2, ime_3, ime_4]
     else:
-        print(f'Miza z imenom {miza.ime_mize} še ne obstaja.' )
-
-
+        print(f'Miza z imenom {ime_mize} še ne obstaja.' )
 
 def preglejImenaIgralcev(ime_1, ime_2, ime_3, ime_4):
     seznam_igralcev = [ime_1, ime_2, ime_3, ime_4]
@@ -160,32 +182,69 @@ def preglejImenaIgralcev(ime_1, ime_2, ime_3, ime_4):
         return True
 
 
+def ustvariMizo(slovar):
+    podatki = slovar
+    ime_mize = podatki['ime mize']
+    igralec_1 = podatki['igralec 1']
+    igralec_2 = podatki['igralec 2']
+    igralec_3 = podatki['igralec 3']
+    igralec_4 = podatki['igralec 4']
+    miza = Miza(ime_mize, igralec_1['ime igralca'], igralec_2['ime igralca'], igralec_3['ime igralca'], igralec_4['ime igralca'])
+    miza.posodobiTočkeRadelce(igralec_1, igralec_2, igralec_3, igralec_4)
+    objekti_Miza.append(miza)
+     
+def naloziMizo(ime_datoteke):
+        with open(ime_datoteke) as datoteka:
+            slovar_stanja = json.load(datoteka)
+        posodobljena = ustvariMizo(slovar_stanja)
+        return posodobljena
 
-def izpisiSeznamIgralcev(ime_mize, seznam_igralcev):
-    print (f'Za mizo {ime_mize} sedijo {ime_1}, {ime_2}, {ime_3} in {ime_4}. ' )
+def nalozi_stanje(ime_datoteke):
+        with open(ime_datoteke) as datoteka:
+            slovar_stanja = json.load(datoteka)
+        for miza in slovar_stanja:
+            slovarMize = slovar_stanja[miza]
+            ustvariMizo(slovarMize)
+        
 
-mize = {}
+def zapisiMize(ime_datoteke):
+        for mizica in objekti_Miza:
+            slovar = mizica.podatkiOMizi()
+            slovar_za_JSON[mizica.ime] = slovar
+        
+        with open(ime_datoteke, 'w') as datoteka:
+            json.dump(slovar_za_JSON, datoteka, ensure_ascii=False, indent=4)        
+  
+
+objekti_Miza = []
+
+slovar_za_JSON = {}
+
+nalozi_stanje('belezka.json')
+
+slovarJSON = {'ime mize': 'druga', 'igralec 1': {'ime igralca': 'tilen', 'točke igralca': 50, 'radelci igralca': 0}, 'igralec 2': {'ime igralca': 'klemen', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 3': {'ime igralca': 'jani', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 4': {'ime igralca': 'bojan', 'točke igralca': 0, 'radelci igralca': 0}}
+
+NoviJohny = {'ime mize': 'deseta', 'igralec 1': {'ime igralca': 'miha', 'točke igralca': 50, 'radelci igralca': 0}, 'igralec 2': {'ime igralca': 'bugi', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 3': {'ime igralca': 'jurij', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 4': {'ime igralca': 'bomba', 'točke igralca': 0, 'radelci igralca': 0}}
+
+seNovejsiJohny = {'ime mize': 'stota', 'igralec 1': {'ime igralca': 'bine', 'točke igralca': 50, 'radelci igralca': 0}, 'igralec 2': {'ime igralca': 'sara', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 3': {'ime igralca': 'tara', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 4': {'ime igralca': 'ema', 'točke igralca': 0, 'radelci igralca': 0}}
 
 
+#ustvariMizo(NoviJohny)
 
-nova = Belezka('nova', 'anže', 'jurij', 'matic', 'gal')
+#ustvariMizo(seNovejsiJohny)
 
-druga = Belezka('druga', 'tilen', 'klemen', 'jani', 'bojan')
+#poskus = ustvariMizo(slovarJSON)
 
-druga.zapisiBelezko('belezka.json')
+#poskus2 = ustvariMizo('tralala', 'brtbs', 'fsdgbvsd', 'edgs', 'sdgrsv')
 
-nova.zapisiBelezko('belezka.json')
+#zapisiMize('belezka.json')
 
-slovar = nova.miza.podatkiOMizi()
-
-print(slovar)
+#print(slovar)
 
 #Belezka('tretja', 'tine', 'matej', 'boštjan', 'andraž').zapisiBelezko('beležka.json')
 
-preveri_za_četrto = preveriAliObstajaMiza('četrta')
-#
+#preveri_za_četrto = preveriAliObstajaMiza('četrta')
 
-#
 #preveriAliObstajaMiza('druga')
 #
 #igralci_za_drugo_mizo = seznamIgralcev('nova')
