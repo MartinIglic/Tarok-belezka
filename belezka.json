@@ -1,3 +1,71 @@
 {
-    "ime mize": "druga",
-    "Slovar podatkov": 
+    "deseta": {
+        "ime mize": "deseta",
+        "igralec 1": {
+            "ime igralca": "miha",
+            "toèke igralca": 50,
+            "radelci igralca": 0
+        },
+        "igralec 2": {
+            "ime igralca": "bugi",
+            "toèke igralca": 0,
+            "radelci igralca": 0
+        },
+        "igralec 3": {
+            "ime igralca": "jurij",
+            "toèke igralca": 0,
+            "radelci igralca": 0
+        },
+        "igralec 4": {
+            "ime igralca": "bomba",
+            "toèke igralca": 0,
+            "radelci igralca": 0
+        }
+    },
+    "stota": {
+        "ime mize": "stota",
+        "igralec 1": {
+            "ime igralca": "bine",
+            "toèke igralca": 50,
+            "radelci igralca": 0
+        },
+        "igralec 2": {
+            "ime igralca": "sara",
+            "toèke igralca": 0,
+            "radelci igralca": 0
+        },
+        "igralec 3": {
+            "ime igralca": "tara",
+            "toèke igralca": 0,
+            "radelci igralca": 0
+        },
+        "igralec 4": {
+            "ime igralca": "ema",
+            "toèke igralca": 0,
+            "radelci igralca": 0
+        }
+    },
+    "druga": {
+        "ime mize": "druga",
+        "igralec 1": {
+            "ime igralca": "tilen",
+            "toèke igralca": 50,
+            "radelci igralca": 0
+        },
+        "igralec 2": {
+            "ime igralca": "klemen",
+            "toèke igralca": 0,
+            "radelci igralca": 0
+        },
+        "igralec 3": {
+            "ime igralca": "jani",
+            "toèke igralca": 0,
+            "radelci igralca": 0
+        },
+        "igralec 4": {
+            "ime igralca": "bojan",
+            "toèke igralca": 0,
+            "radelci igralca": 0
+        }
+    }
+}
