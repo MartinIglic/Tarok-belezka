@@ -219,7 +219,7 @@ def poglej_dosedanje_rezultate():
             miza = objekti_Miza[ime_mize]
             seznam = seznam_igralcev(ime_mize)
             for ime in seznam:
-                igralec = miza.poisciIgralca(ime)
+                igralec = miza.poisci_igralca(ime)
                 rad = igralec.radelci
                 toc = igralec.tocke
                 print(f'Oseba {ime} ima {toc} točk')
