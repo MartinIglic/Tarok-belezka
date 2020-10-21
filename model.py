@@ -81,10 +81,10 @@ class Miza:
         return slovar
 
     def posodobi_točke_radelce(self, igralec_1, igralec_2, igralec_3, igralec_4):
-        self.igralec_1.posodobiIgralca(igralec_1)
-        self.igralec_2.posodobiIgralca(igralec_2)
-        self.igralec_3.posodobiIgralca(igralec_3)
-        self.igralec_4.posodobiIgralca(igralec_4)
+        self.igralec_1.posodobi_igralca(igralec_1)
+        self.igralec_2.posodobi_igralca(igralec_2)
+        self.igralec_3.posodobi_igralca(igralec_3)
+        self.igralec_4.posodobi_igralca(igralec_4)
 
 
 def dodaj_mizo(ime_mize, ime_1, ime_2, ime_3, ime_4):
@@ -233,7 +233,7 @@ def ustvari_mizo(slovar):
     igralec_3 = podatki['igralec 3']
     igralec_4 = podatki['igralec 4']
     miza = Miza(ime_mize, igralec_1['ime igralca'], igralec_2['ime igralca'], igralec_3['ime igralca'], igralec_4['ime igralca'])
-    miza.posodobiTočkeRadelce(igralec_1, igralec_2, igralec_3, igralec_4)
+    miza.posodobi_točke_radelce(igralec_1, igralec_2, igralec_3, igralec_4)
     objekti_Miza[miza.ime] = miza
 
 
