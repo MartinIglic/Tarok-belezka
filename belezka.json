@@ -1,24 +1,47 @@
 {
+    "cjzvhm": {
+        "ime mize": "cjzvhm",
+        "igralec 1": {
+            "ime igralca": "cjvukzgbuli",
+            "toƒçke igralca": 0,
+            "radelci igralca": 0
+        },
+        "igralec 2": {
+            "ime igralca": "vkgvjbh",
+            "toƒçke igralca": 0,
+            "radelci igralca": 0
+        },
+        "igralec 3": {
+            "ime igralca": "bjvhbjl",
+            "toƒçke igralca": 0,
+            "radelci igralca": 0
+        },
+        "igralec 4": {
+            "ime igralca": "bjh,b j,",
+            "toƒçke igralca": 0,
+            "radelci igralca": 0
+        }
+    },
     "deseta": {
         "ime mize": "deseta",
         "igralec 1": {
             "ime igralca": "miha",
-            "toËke igralca": 50,
+            "toƒçke igralca": 50,
             "radelci igralca": 0
         },
         "igralec 2": {
             "ime igralca": "bugi",
-            "toËke igralca": 0,
+            "toƒçke igralca": 0,
             "radelci igralca": 0
         },
         "igralec 3": {
             "ime igralca": "jurij",
-            "toËke igralca": 0,
+            "toƒçke igralca": 0,
             "radelci igralca": 0
         },
         "igralec 4": {
             "ime igralca": "bomba",
-            "toËke igralca": 0,
+            "toƒçke igralca": 0,
             "radelci igralca": 0
         }
     },
@@ -26,46 +49,69 @@
         "ime mize": "stota",
         "igralec 1": {
             "ime igralca": "bine",
-            "toËke igralca": 50,
+            "toƒçke igralca": 50,
             "radelci igralca": 0
         },
         "igralec 2": {
             "ime igralca": "sara",
-            "toËke igralca": 0,
+            "toƒçke igralca": 0,
             "radelci igralca": 0
         },
         "igralec 3": {
             "ime igralca": "tara",
-            "toËke igralca": 0,
+            "toƒçke igralca": 0,
             "radelci igralca": 0
         },
         "igralec 4": {
             "ime igralca": "ema",
-            "toËke igralca": 0,
+            "toƒçke igralca": 0,
             "radelci igralca": 0
         }
     },
-    "druga": {
-        "ime mize": "druga",
+    "tralala": {
+        "ime mize": "tralala",
         "igralec 1": {
-            "ime igralca": "tilen",
-            "toËke igralca": 50,
+            "ime igralca": "jdtzn",
+            "toƒçke igralca": 281,
             "radelci igralca": 0
         },
         "igralec 2": {
-            "ime igralca": "klemen",
-            "toËke igralca": 0,
-            "radelci igralca": 0
+            "ime igralca": "hgfhs",
+            "toƒçke igralca": -20,
+            "radelci igralca": 1
         },
         "igralec 3": {
-            "ime igralca": "jani",
-            "toËke igralca": 0,
-            "radelci igralca": 0
+            "ime igralca": "gsdfg",
+            "toƒçke igralca": 33,
+            "radelci igralca": 1
         },
         "igralec 4": {
-            "ime igralca": "bojan",
-            "toËke igralca": 0,
+            "ime igralca": "sfgh",
+            "toƒçke igralca": 61,
             "radelci igralca": 0
+        }
+    },
+    "tre": {
+        "ime mize": "tre",
+        "igralec 1": {
+            "ime igralca": "fdgg",
+            "toƒçke igralca": 342,
+            "radelci igralca": 4
+        },
+        "igralec 2": {
+            "ime igralca": "verv",
+            "toƒçke igralca": 878,
+            "radelci igralca": 4
+        },
+        "igralec 3": {
+            "ime igralca": "trfds",
+            "toƒçke igralca": 570,
+            "radelci igralca": 4
+        },
+        "igralec 4": {
+            "ime igralca": "ghkin",
+            "toƒçke igralca": 536,
+            "radelci igralca": 5
         }
     }
 }
