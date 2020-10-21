@@ -1,7 +1,7 @@
 from model import Miza, preveri_ali_obstaja_miza, preglej_imena_igralcev, valat
 from model import dodaj_mizo, objekti_Miza, slovar_za_JSON, seznam_igralcev
 from model import slovar_bonusov, slovar_iger, barvni_valati, nalozi_stanje
-from model import Igralec, vrziVkup, dodaj_tocke_igri, zapisi_mize
+from model import Igralec, vrzi_vkup, dodaj_tocke_igri, zapisi_mize
 from model import naredi_seznam, posodobi_radelc
 
 navadne_igre = '''1)tri
@@ -67,7 +67,7 @@ def posodobi_podatke():
                 mat = dobljena()
                 napoved = seznam_dodatkov(slovar_iger, igra, 'napovedi')
                 real = seznam_dodatkov(slovar_iger, igra, 'realizacije')
-                tocke = vrziVkup(igra, slovar_iger, raz, napoved, real, mat)
+                tocke = vrzi_vkup(igra, slovar_iger, raz, napoved, real, mat)
                 dodaj_tocke_igri(ime_igralca, soigralc, ime_mize, tocke, mat)
                 posodobi_radelc(ime_mize, ime_igralca, slovar_iger, igra)
                 print('Uspešno ste dodali točke.')
