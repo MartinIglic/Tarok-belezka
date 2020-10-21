@@ -62,14 +62,14 @@ def posodobi_podatke():
                 ime_igralca = seznam[st - 1]
                 igra = licitirana_igra(ime_mize, ime_igralca)
                 soigralc = soigralec(igra, ime_igralca, ime_mize)
-                slovar_iger = morda_valat(igra)
+                slovarIger = morda_valat(igra)
                 raz = razlika_igre(slovar_iger, igra)
                 mat = dobljena()
-                napoved = seznam_dodatkov(slovar_iger, igra, 'napovedi')
-                real = seznam_dodatkov(slovar_iger, igra, 'realizacije')
-                tocke = vrzi_vkup(igra, slovar_iger, raz, napoved, real, mat)
+                napoved = seznam_dodatkov(slovarIger, igra, 'napovedi')
+                real = seznam_dodatkov(slovarIger, igra, 'realizacije')
+                tocke = vrzi_vkup(igra, slovarIger, raz, napoved, real, mat)
                 dodaj_tocke_igri(ime_igralca, soigralc, ime_mize, tocke, mat)
-                posodobi_radelc(ime_mize, ime_igralca, slovar_iger, igra)
+                posodobi_radelc(ime_mize, ime_igralca, slovarIger, igra)
                 print('Uspešno ste dodali točke.')
                 break
             else:
