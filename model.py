@@ -1,9 +1,8 @@
+import json
 slovar_iger = {'tri': 10, 'dve': 20, 'ena': 30, 'solo tri': 40, 'solo dve': 50, 'solo ena': 60, 'solo brez': 80, 'pikolo berač': 60, 'berač': 70}
 barvni_valati = {'barvni valat tri': 100, 'barvni valat dve': 110, 'barvni valat ena': 120, 'barvni valat solotri': 125, 'barvni valat solo dve': 150, 'barvni valat solo ena': 175, 'bar valat solo brez': 250}
-valat = {'valat tri':200, 'valat dve':220, 'valat ena':240, 'valat solo tri':250, 'valat solo dve':300, 'valat solo ena':350, 'valat solo brez':500}
-slovar_bonusov = {'kralji': 10, 'trula': 10, 'pagat ultimo': 25,'kralj ultimo': 10, 'valat': 50}
-import json
-
+valat = {'valat tri': 200, 'valat dve': 220, 'valat ena': 240, 'valat solo tri': 250, 'valat solo dve': 300, 'valat solo ena': 350, 'valat solo brez': 500}
+slovar_bonusov = {'kralji': 10, 'trula': 10, 'pagat ultimo': 25, 'kralj ultimo': 10, 'valat': 50}
 
 
 class Igralec:
@@ -14,15 +13,12 @@ class Igralec:
         self.ime = ime
 
     def posodobi_tocke(self, tocke, mat):
-        if self.porabiRadelc(mat) == True:
+        if self.porabiRadelc(mat):
             self.dodaj_tocke(tocke*2)
             print(f'Igralec {self.ime} je prejel {tocke*2} točk.')
         else:
             self.dodaj_tocke(tocke)
             print(f'Igralec {self.ime} je prejel {tocke} točk.')
-
-        
-
 
     def dodaj_tocke(self, tocke):
         self.tocke += tocke
@@ -36,7 +32,7 @@ class Igralec:
     def preveriRadelc(self):
         if self.radelci == 0:
             return True
-        else: 
+        else:
             return False
 
     def porabiRadelc(self, mat):
@@ -47,7 +43,6 @@ class Igralec:
             return True
         else:
             return False
-            
 
     def podatkiOIgralcu(self):
         slovar_podatkov = {}
@@ -59,22 +54,22 @@ class Igralec:
     def posodobiIgralca(self, slovar):
         self.tocke = slovar['točke igralca']
         self.radelci = slovar['radelci igralca']
+
+
 class Miza:
 
-    def __init__(self, ime_mize, ime_1, ime_2, ime_3, ime_4): 
+    def __init__(self, ime_mize, ime_1, ime_2, ime_3, ime_4):
         self.ime = ime_mize
         self.igralec_1 = Igralec(ime_1)
         self.igralec_2 = Igralec(ime_2)
         self.igralec_3 = Igralec(ime_3)
         self.igralec_4 = Igralec(ime_4)
-         
 
     def poisciIgralca(self, ime):
         for igralec in [self.igralec_1, self.igralec_2, self.igralec_3, self.igralec_4]:
             if igralec.ime == ime:
                 return igralec
         return None
-
 
     def podatkiOMizi(self):
         slovar = {}
@@ -85,7 +80,6 @@ class Miza:
         slovar['igralec 4'] = self.igralec_4.podatkiOIgralcu()
         return slovar
 
-
     def posodobiTočkeRadelce(self, igralec_1, igralec_2, igralec_3, igralec_4):
         self.igralec_1.posodobiIgralca(igralec_1)
         self.igralec_2.posodobiIgralca(igralec_2)
@@ -93,9 +87,10 @@ class Miza:
         self.igralec_4.posodobiIgralca(igralec_4)
 
 
-def dodajMizo( ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
-    miza = Miza(ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4)
-    objekti_Miza[miza.ime] = miza          
+def dodajMizo(ime_mize, ime_1, ime_2, ime_3, ime_4):
+    miza = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4)
+    objekti_Miza[miza.ime] = miza
+
 
 def slovarIgralca(slovar):
     ime_igralca = slovar['ime igralca']
@@ -109,6 +104,7 @@ def vrniSteviloRadelcev(ime_mize, ime_igralca):
     igralec = miza.poisciIgralca(ime_igralca)
     return igralec.radelci
 
+
 def vrniSteviloTock(ime_mize, ime_igralca):
     miza = poisciMizo(ime_mize)
     igralec = miza.poisciIgralca(ime_igralca)
@@ -118,8 +114,10 @@ def vrniSteviloTock(ime_mize, ime_igralca):
 def točkeOdIgre(igra, razlika):
     return slovar_iger[igra] + razlika
 
+
 def bonusTočke(bonus):
     return slovar_bonusov[bonus]
+
 
 def seznamImenMiz():
     mnozica = set()
@@ -128,11 +126,12 @@ def seznamImenMiz():
         iskana = objekti_Miza.get(miza)
         mnozica.add(iskana.ime)
     return mnozica
-    
+
 
 def preveriAliObstajaMiza(ime_mize):
         mnozica = seznamImenMiz()
         return ime_mize in mnozica
+
 
 def vrziVkup(igra, slovarIger, razlika, napovedi, realizacije, mat):
     seznam = seznam_tock(slovarIger)
@@ -166,26 +165,27 @@ def racunajBonuse(napovedi, realizacije):
             r = -2
         elif napoved == 0 and realizacije[i] == 1:
             r = 1
-        else :
-            r = 0    
-        tocke += seznam_tock(slovar_bonusov)[i] * r 
+        else:
+            r = 0
+        tocke += seznam_tock(slovar_bonusov)[i] * r
         i += 1
     return tocke
+
 
 def dodaj_tocke_igri(ime_igralec, ime_soigralec, ime_miza, tocke, mat):
     miza = objekti_Miza[ime_miza]
     igralec = miza.poisciIgralca(ime_igralec)
     soigralc = miza.poisciIgralca(ime_soigralec)
-    if soigralc == None:
+    if soigralc is None:
         pass
     else:
         soigralc.dodaj_tocke(tocke)
         print(f'Soigralec {ime_soigralec} je prejel {tocke} točk.')
     igralec.posodobi_tocke(tocke, mat)
-    
-        
+
+
 def preveri_ali_obstaja_igralec(ime_mize, ime_igralca):
-        if preveriAliObstajaMiza(ime_mize) == True:
+        if preveriAliObstajaMiza(ime_mize):
             miza = poisciMizo(ime_mize)
             seznam_igralcev = seznamIgralcev(ime_mize)
             while len(seznam_igralcev) > 0:
@@ -197,15 +197,13 @@ def preveri_ali_obstaja_igralec(ime_mize, ime_igralca):
         else:
             print(f'Miza z imenom {ime_mize} še ne obstaja.')
 
+
 def poisciMizo(ime_mize):
-#    if not ime_mize in seznamImenMiz:
-#        print('miza s tem imenon ne obstaja!!!')
-#    else:
     return objekti_Miza.get(ime_mize)
-        
+
 
 def seznamIgralcev(ime_mize):
-    if preveriAliObstajaMiza(ime_mize) == True:
+    if preveriAliObstajaMiza(ime_mize):
         miza = objekti_Miza.get(ime_mize)
         ime_1 = miza.igralec_1.ime
         ime_2 = miza.igralec_2.ime
@@ -213,7 +211,8 @@ def seznamIgralcev(ime_mize):
         ime_4 = miza.igralec_4.ime
         return [ime_1, ime_2, ime_3, ime_4]
     else:
-        print(f'Miza z imenom {ime_mize} še ne obstaja.' )
+        print(f'Miza z imenom {ime_mize} še ne obstaja.')
+
 
 def preglejImenaIgralcev(ime_1, ime_2, ime_3, ime_4):
     # PReverimo, da so imena res različna
@@ -222,7 +221,7 @@ def preglejImenaIgralcev(ime_1, ime_2, ime_3, ime_4):
     množica_imen = set(seznam_igralcev)
     if len(množica_imen) < 4:
         return False
-    else: 
+    else:
         return True
 
 
@@ -236,12 +235,7 @@ def ustvariMizo(slovar):
     miza = Miza(ime_mize, igralec_1['ime igralca'], igralec_2['ime igralca'], igralec_3['ime igralca'], igralec_4['ime igralca'])
     miza.posodobiTočkeRadelce(igralec_1, igralec_2, igralec_3, igralec_4)
     objekti_Miza[miza.ime] = miza
-     
-def naloziMizo(ime_datoteke):
-        with open(ime_datoteke) as datoteka:
-            slovar_stanja = json.load(datoteka)
-        posodobljena = ustvariMizo(slovar_stanja)
-        return posodobljena
+
 
 def nalozi_stanje(ime_datoteke):
         with open(ime_datoteke, encoding='UTF-8') as datoteka:
@@ -250,75 +244,32 @@ def nalozi_stanje(ime_datoteke):
             slovarMize = slovar_stanja[miza]
             ustvariMizo(slovarMize)
 
+
 def naredi_seznam(napoved):
     sez = list(napoved)
-    nabor = [0,0,0,0,0]
+    nabor = [0, 0, 0, 0, 0]
     for st in sez:
         stevilo = int(st) - 1
         nabor[stevilo] = 1
     stevke = tuple(nabor)
     return stevke
-        
+
 
 def seznam_tock(slovar):
     return list(slovar.values())
+
 
 def zapisiMize(ime_datoteke):
         for mizica in objekti_Miza:
             slovar = objekti_Miza.get(mizica)
             zapisi = slovar.podatkiOMizi()
             slovar_za_JSON[mizica] = zapisi
-        
+
         with open(ime_datoteke, 'w', encoding='UTF-8') as datoteka:
-            json.dump(slovar_za_JSON, datoteka, ensure_ascii=False, indent=4)        
-  
+            json.dump(slovar_za_JSON, datoteka, ensure_ascii=False, indent=4)
+
 
 objekti_Miza = dict()
 
-nalozi_stanje('belezka.json') #  {'cjzvhm': Miza('cjzvhm', 'cjvukzgbuli', 'vkgvjbh', 'bjvhbjl', 'bjh,b j,'), }
 
 slovar_za_JSON = {}
-
-#nalozi_stanje('belezka.json')
-
-slovarJSON = {'ime mize': 'druga', 'igralec 1': {'ime igralca': 'tilen', 'točke igralca': 50, 'radelci igralca': 0}, 'igralec 2': {'ime igralca': 'klemen', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 3': {'ime igralca': 'jani', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 4': {'ime igralca': 'bojan', 'točke igralca': 0, 'radelci igralca': 0}}
-
-NoviJohny = {'ime mize': 'deseta', 'igralec 1': {'ime igralca': 'miha', 'točke igralca': 50, 'radelci igralca': 0}, 'igralec 2': {'ime igralca': 'bugi', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 3': {'ime igralca': 'jurij', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 4': {'ime igralca': 'bomba', 'točke igralca': 0, 'radelci igralca': 0}}
-
-seNovejsiJohny = {'ime mize': 'stota', 'igralec 1': {'ime igralca': 'bine', 'točke igralca': 50, 'radelci igralca': 0}, 'igralec 2': {'ime igralca': 'sara', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 3': {'ime igralca': 'tara', 'točke igralca': 0, 'radelci igralca': 0}, 'igralec 4': {'ime igralca': 'ema', 'točke igralca': 0, 'radelci igralca': 0}}
-
-#ustvariMizo(NoviJohny)
-
-#ustvariMizo(seNovejsiJohny)
-
-preglejImenaIgralcev
-
-
-#Vse_trenutne_mize = seznamImenMiz()
-
-#ALIjevdesetimiha = preveri_ali_obstaja_igralec('deseta', 'miha')
-
-#radelcienga = vrniSteviloRadelcev('stota', 'bine')
-
-#poskus = ustvariMizo(slovarJSON)
-
-#poskus2 = ustvariMizo('tralala', 'brtbs', 'fsdgbvsd', 'edgs', 'sdgrsv')
-
-#zapisiMize('belezka.json')
-
-#print(slovar)
-
-#Belezka('tretja', 'tine', 'matej', 'boštjan', 'andraž').zapisiBelezko('beležka.json')
-
-#preveri_za_četrto = preveriAliObstajaMiza('četrta')
-
-#preveriAliObstajaMiza('druga')
-#
-#igralci_za_drugo_mizo = seznamIgralcev('nova')
-#
-#
-##preveri_ali_obstaja_igralec('druga', 'jani')
-#haha = preveri_ali_obstaja_igralec('druga', 'štruci')
-#
-#t = vrniSteviloRadelcev('druga', 'bojan')
-print('vse je šlo v redu')
