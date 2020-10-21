@@ -1,0 +1,3 @@
+{
+    "Ime mize": "nova",
+    "Podatki o igralcih": 
