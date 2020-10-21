@@ -91,29 +91,6 @@ class Miza:
         self.igralec_2.posodobiIgralca(igralec_2)
         self.igralec_3.posodobiIgralca(igralec_3)
         self.igralec_4.posodobiIgralca(igralec_4)
-        
-    
-
-class Belezka:
-
-    def __init__(self, ime_mize, ime_1, ime_2, ime_3, ime_4):
-        self.miza = Miza(ime_mize, ime_1, ime_2, ime_3, ime_4)
-        self.ime = ime_mize
-
-    def zapisiBelezko(self, ime_datoteke):
-        slovar_mize = {}
-        slovar_mize = self.miza.podatkiOMizi()
-        print(slovar_mize)
-        
-        with open(ime_datoteke, 'w') as datoteka:
-            json.dump(slovar_mize, datoteka, ensure_ascii=False, indent=4)
-
-#    @classmethod
-#    def nalozi_stanje(cls, ime_datoteke):
-#        with open(ime_datoteke) as datoteka:
-#            slovar_stanja = json.load(datoteka)
-#        posodobljena_miza = ustvariMizo(slovar_stanja)
-#        return Belezka()
 
 
 def dodajMizo( ime_mize, ime_igralca_1, ime_igralca_2, ime_igralca_3, ime_igralca_4):
